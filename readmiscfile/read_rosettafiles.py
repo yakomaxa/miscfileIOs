@@ -21,20 +21,20 @@ def read_rama(filename, ignoreterms=True):
             print("header ignored")
             print(parsed)
         else:
-            resn += [parsed[0]]
-            aa += [parsed[1]]
-            ss += [parsed[2]]
-            abego += [parsed[3]]
-            phi += [parsed[4]]
-            psi += [parsed[5]]
-            omega += [parsed[6]]
-    rama=df(data={'resn':resn,
-              'aa':aa,
-              'ss':ss,
-              'abego':abego,
-              'phi':phi,
-               "psi":psi,
-               "omega":omega},
+            resn += [int(parsed[0])]
+            aa += [str(parsed[1])]
+            ss += [str(parsed[2])]
+            abego += [str(parsed[3])]
+            phi += [float(parsed[4])]
+            psi += [float(parsed[5])]
+            omega += [float(parsed[6])]
+    rama=df(data={"resn":resn,
+                  "aa":aa,
+                  "ss":ss,
+                  "abego":abego,
+                  "phi":phi,
+                  "psi":psi,
+                  "omega":omega},
        columns=ramaheader)
     
     if(ignoreterms):
