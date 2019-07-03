@@ -1,5 +1,5 @@
 
-def read_rama(filename):
+def read_rama(filename, ignoreterms=True):
     from pandas import  DataFrame as df
     ramafile=open(filename)
     lines=ramafile.readlines()
@@ -28,13 +28,19 @@ def read_rama(filename):
             phi += [parsed[4]]
             psi += [parsed[5]]
             omega += [parsed[6]]
-
-    return  df(
-            data={'resn':resn,
-                  'aa':aa,
-                  'ss':ss,
-                  'abego':abego,
-                  'phi':phi,
-                  "psi":psi,
-                  "omega":omega},
-            columns=ramaheader)
+    rama=df(data={'resn':resn,
+              'aa':aa,
+              'ss':ss,
+              'abego':abego,
+              'phi':phi,
+               "psi":psi,
+               "omega":omega},
+       columns=ramaheader)
+    
+    if(ignoreterms):
+        rama=rama.drop(0)
+        rama=rama.drop(rama["resn"].size)
+        return  rama
+    else:
+        return rama
+        
