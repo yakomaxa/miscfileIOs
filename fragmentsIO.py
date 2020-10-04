@@ -13,28 +13,39 @@ class fragmentsets:
                     print("new")
                     cc=0
                 elif (line==" "):
-                    print("boid")
+                    print("void1")
                     cc=1
                 elif (line[0]==" "):
                     pos=line[1:10]
                     if (pos == "position:"):
-                        numfrag = int(line[-14:-1])
-                        fragid = int(line[10:23])
+                        #numfrag = int(line[-14:-1])
+                        numfrag = line.split()[3]
+                        #fragid = int(line[10:23])
+                        fragid = int(line.split()[1])
                         #print(fragid)
                         self.fragments_now = []
                         self.ssetype_now = []
                         writeflag=0
+                    elif(line.split()==[]):
+                        #p
+                        print("void2")
                     else:
                         #print(line)
                         #print(slices(line, 3, 3, 5))
-                        pdbid = line[1:5]
-                        chainid = line[6]
-                        position=line[10:13]
-                        resname=line[14:15]
-                        ssetype=str(line[16:17])
-                        phi = float(line[18:26])
-                        psi = float(line[27:35])
-                        omega = float(line[36:44])
+                        linesplited=line.split()
+                        #print(line)
+                        #print(linesplited)
+                        pdbid = linesplited[0]
+                        chainid = linesplited[1]
+                        position= linesplited[2]
+                        resname= linesplited[3]
+                        ssetype= linesplited[4]
+                        phi = float(linesplited[5])
+                        psi = float(linesplited[6])
+                        omega = float(linesplited[7])
+                        xx = float(linesplited[8])
+                        yy = float(linesplited[9])
+                        zz = float(linesplited[10])
                         #ppo=[phi,psi,omega]
                         #c=1
                         if (c==0):
@@ -50,7 +61,7 @@ class fragmentsets:
                             sses.append(ssetype)
                             c=c+1
                             if(c == fragsize):
-                                print("hello"+str(c))
+                                #print("hello"+str(c))
                                 c=0
                                 self.fragments_now.append([(phis),
                                                            (psis),
